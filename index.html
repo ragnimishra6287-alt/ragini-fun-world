@@ -75,7 +75,7 @@
         // 🧠 Quiz
         function quiz() {
             let ans = prompt("HTML stands for?");
-            if (ans.toLowerCase().includes("hypertext")) {
+            if (ans && ans.toLowerCase().includes("hypertext")) {
                 alert("✅ Correct!");
             } else {
                 alert("❌ Wrong!");
@@ -84,7 +84,7 @@
 
         // 🎵 Music
         function toggleMusic() {
-            let m = document.getElementById("Music.mp3");
+            let m = document.getElementById("music");
             if (m.paused) m.play();
             else m.pause();
         }
@@ -108,7 +108,8 @@
 
     <div id="joke"></div>
 
-    <audio id="music" src="music.mp3" loop></audio>
+    <!-- 🎵 IMPORTANT: Capital M -->
+    <audio id="music" src="Music.mp3" loop></audio>
 
 </body>
 </html>
