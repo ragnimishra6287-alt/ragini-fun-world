@@ -1,43 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Fun Zone 🎮</title>
+    <title>Fun Zone Pro 🎮</title>
 
     <style>
         body {
             text-align: center;
             font-family: Arial;
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            transition: 0.5s;
+            background: #fbc2eb;
         }
 
-        h1 {
-            margin-top: 30px;
+        .dark {
+            background: #0f172a;
+            color: white;
         }
 
         button {
-            padding: 12px 20px;
-            margin: 10px;
-            font-size: 16px;
+            padding: 10px 20px;
+            margin: 8px;
+            font-size: 15px;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
         }
 
-        #gameBox {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .heart {
-            position: fixed;
-            color: red;
-            animation: float 3s linear infinite;
-        }
-
-        @keyframes float {
-            0% {transform: translateY(0);}
-            100% {transform: translateY(-600px);}
+        #score {
+            font-size: 22px;
+            margin-top: 10px;
         }
     </style>
 
@@ -48,69 +38,77 @@
                 "#" + Math.floor(Math.random()*16777215).toString(16);
         }
 
+        // 🌙 Dark mode
+        function toggleMode() {
+            document.body.classList.toggle("dark");
+        }
+
+        // 🎮 Score Game
+        let score = 0;
+        function increaseScore() {
+            score++;
+            document.getElementById("score").innerText = "Score: " + score;
+        }
+
         // 😂 Joke
         function showJoke() {
             let jokes = [
-                "Coding + Coffee = Life 😄",
-                "Why do programmers hate bugs? 😂",
-                "Because debugging is hard 😎"
+                "Coding is fun 😄",
+                "Debugging = Detective work 😂",
+                "Eat Sleep Code Repeat 😎"
             ];
             document.getElementById("joke").innerText =
                 jokes[Math.floor(Math.random()*jokes.length)];
         }
 
-        // 😎 Surprise
-        function surprise() {
-            alert("You are amazing Gunnu 😎🔥");
+        // 🎮 Guess Game
+        let number = Math.floor(Math.random()*10)+1;
+        function guessGame() {
+            let guess = prompt("Guess number (1-10)");
+            if (guess == number) {
+                alert("🎉 Correct!");
+            } else {
+                alert("Try again 😅");
+            }
         }
 
-        // 🎮 Game (Guess Number)
-        let number = Math.floor(Math.random()*10)+1;
-
-        function guessGame() {
-            let guess = prompt("Guess a number (1-10)");
-            if (guess == number) {
-                alert("🎉 Correct! You win!");
+        // 🧠 Quiz
+        function quiz() {
+            let ans = prompt("HTML stands for?");
+            if (ans.toLowerCase().includes("hypertext")) {
+                alert("✅ Correct!");
             } else {
-                alert("❌ Wrong! Try again.");
+                alert("❌ Wrong!");
             }
         }
 
         // 🎵 Music
-        function playMusic() {
-            document.getElementById("music").play();
+        function toggleMusic() {
+            let m = document.getElementById("music");
+            if (m.paused) m.play();
+            else m.pause();
         }
-
-        // ❤️ Hearts
-        function hearts() {
-            let heart = document.createElement("div");
-            heart.className = "heart";
-            heart.innerText = "❤️";
-            heart.style.left = Math.random()*100 + "vw";
-            document.body.appendChild(heart);
-
-            setTimeout(() => heart.remove(), 3000);
-        }
-
-        setInterval(hearts, 300);
     </script>
 
 </head>
 
 <body>
 
-    <h1>Fun Zone 🎮🎵😄</h1>
+    <h1>Fun Zone Pro 🎮😄</h1>
 
-    <button onclick="changeColor()">Change Color 🎨</button>
+    <button onclick="changeColor()">Color 🎨</button>
+    <button onclick="toggleMode()">Dark Mode 🌙</button>
     <button onclick="showJoke()">Joke 😂</button>
-    <button onclick="surprise()">Surprise 😎</button>
-    <button onclick="guessGame()">Play Game 🎮</button>
-    <button onclick="playMusic()">Play Music 🎵</button>
+    <button onclick="guessGame()">Guess Game 🎮</button>
+    <button onclick="quiz()">Quiz 🧠</button>
+    <button onclick="toggleMusic()">Music 🎵</button>
+
+    <h2 onclick="increaseScore()">Click Me 🎯</h2>
+    <div id="score">Score: 0</div>
 
     <div id="joke"></div>
 
-    <!-- 🎵 Music file -->
-    <audio id="music" src="music.mp3"></audio>
+    <audio id="music" src="music.mp3" loop></audio>
 
 </body>
 </html>
