@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fun Zone 🎮</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+        }
+
+        h1 {
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #gameBox {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .heart {
+            position: fixed;
+            color: red;
+            animation: float 3s linear infinite;
+        }
+
+        @keyframes float {
+            0% {transform: translateY(0);}
+            100% {transform: translateY(-600px);}
+        }
+    </style>
+
+    <script>
+        // 🎨 Color change
+        function changeColor() {
+            document.body.style.background =
+                "#" + Math.floor(Math.random()*16777215).toString(16);
+        }
+
+        // 😂 Joke
+        function showJoke() {
+            let jokes = [
+                "Coding + Coffee = Life 😄",
+                "Why do programmers hate bugs? 😂",
+                "Because debugging is hard 😎"
+            ];
+            document.getElementById("joke").innerText =
+                jokes[Math.floor(Math.random()*jokes.length)];
+        }
+
+        // 😎 Surprise
+        function surprise() {
+            alert("You are amazing Gunnu 😎🔥");
+        }
+
+        // 🎮 Game (Guess Number)
+        let number = Math.floor(Math.random()*10)+1;
+
+        function guessGame() {
+            let guess = prompt("Guess a number (1-10)");
+            if (guess == number) {
+                alert("🎉 Correct! You win!");
+            } else {
+                alert("❌ Wrong! Try again.");
+            }
+        }
+
+        // 🎵 Music
+        function playMusic() {
+            document.getElementById("music").play();
+        }
+
+        // ❤️ Hearts
+        function hearts() {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerText = "❤️";
+            heart.style.left = Math.random()*100 + "vw";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        setInterval(hearts, 300);
+    </script>
+
+</head>
+
+<body>
+
+    <h1>Fun Zone 🎮🎵😄</h1>
+
+    <button onclick="changeColor()">Change Color 🎨</button>
+    <button onclick="showJoke()">Joke 😂</button>
+    <button onclick="surprise()">Surprise 😎</button>
+    <button onclick="guessGame()">Play Game 🎮</button>
+    <button onclick="playMusic()">Play Music 🎵</button>
+
+    <div id="joke"></div>
+
+    <!-- 🎵 Music file -->
+    <audio id="music" src="music.mp3"></audio>
+
+</body>
+</html>
